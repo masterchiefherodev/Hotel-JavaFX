@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #282a36;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.InicioController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="750.0">
@@ -47,6 +46,17 @@
                      </font>
                      <graphic>
                         <FontAwesomeIconView glyphName="WRENCH" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarHotel" stylesheets="@../css/application.css" text="Eliminar" textFill="#282a36">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="MINUS_CIRCLE" />
                      </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />

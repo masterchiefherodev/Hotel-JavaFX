@@ -86,4 +86,21 @@ public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
     return datos;
   }
 
+  public ArrayList<String> buscarTipo() throws Exception {
+    String query = "select tipo from tipos";
+    ArrayList<String> tipos = new ArrayList<>();
+    Statement solicitud = Conexion.getInstancia().getCnn().createStatement();
+    ResultSet resultado = solicitud.executeQuery(query);
+    if (!resultado.next()) {
+      //
+    } else {
+      do {
+        tipos.add(resultado.getString(1));
+      } while (resultado.next());
+    }
+    solicitud.close();
+    resultado.close();
+    return tipos;
+  }
+
 }

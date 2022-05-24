@@ -8,7 +8,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import fes.aragon.local.ObjetoControlador;
+import fes.aragon.modelo.Gerente;
 import fes.aragon.modelo.Hotel;
+import fes.aragon.modelo.implementacion.HabitacionImplBInterfaz;
 import fes.aragon.modelo.implementacion.HotelImpBInterfaz;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -30,6 +32,9 @@ public class InicioController extends BaseController implements Initializable {
 
   @FXML
   private Button btnCargar;
+
+  @FXML
+  private Button btnEliminar;
 
   @FXML
   private Button btnModificar;
@@ -82,7 +87,14 @@ public class InicioController extends BaseController implements Initializable {
     }
     this.btnAgregar.setDisable(false);
     this.btnModificar.setDisable(false);
+    this.btnEliminar.setDisable(false);
     this.btnCargar.setDisable(true);
+
+  }
+
+  @FXML
+  void eliminarHotel(ActionEvent event) {
+
   }
 
   @FXML
@@ -101,7 +113,6 @@ public class InicioController extends BaseController implements Initializable {
       alerta.setContentText("Por favor selecciona una fila, para la modificar");
       Optional<ButtonType> resultado = alerta.showAndWait();
       if (resultado.get().equals(OK)) {
-
       }
     }
 
@@ -123,22 +134,33 @@ public class InicioController extends BaseController implements Initializable {
     this.clmTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
     this.clmGerente.setCellValueFactory(new PropertyValueFactory<>("gerente"));
     this.tblTabla.setItems(ObjetoControlador.getInstancia().getArrayHotel());
+    try {
+      ArrayList<String> tipos = cnHabitacion.buscarTipo();
+      for (String tipo : tipos) {
+        ObjetoControlador.getInstancia().getTipos().add(tipo);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     if (ObjetoControlador.getInstancia().getArrayHotel().isEmpty()) {
       // Si el array de Hotel esta vacio cargar esta habilitado y agregar y modificar
       // están deshabilitados
       this.btnCargar.setDisable(false);
       this.btnAgregar.setDisable(true);
       this.btnModificar.setDisable(true);
+      this.btnEliminar.setDisable(true);
     } else {
       // Si el array de Hotel contiene objetos cargar está deshabilitado y agregar y
       // modificar están habilitados
       this.btnCargar.setDisable(true);
       this.btnAgregar.setDisable(false);
       this.btnModificar.setDisable(false);
+      this.btnEliminar.setDisable(false);
     }
   }
 
   // Objetos queries
   private HotelImpBInterfaz<Hotel> cnHotel = new HotelImpBInterfaz<>();
+  private HabitacionImplBInterfaz<Gerente> cnHabitacion = new HabitacionImplBInterfaz<>();
 
 }

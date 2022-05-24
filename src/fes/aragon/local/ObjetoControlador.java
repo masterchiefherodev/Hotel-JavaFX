@@ -7,11 +7,20 @@ import javafx.collections.ObservableList;
 public class ObjetoControlador {
   private static ObjetoControlador instancia = new ObjetoControlador();
   private ObservableList<Hotel> arrayHotel = FXCollections.observableArrayList();
+  ObservableList<String> tipos = FXCollections.observableArrayList();
   private int indiceHotel = -1;
   private int indiceHabitacion = -1;
 
   private ObjetoControlador() {
 
+  }
+
+  public ObservableList<String> getTipos() {
+    return tipos;
+  }
+
+  public void setTipos(ObservableList<String> tipos) {
+    this.tipos = tipos;
   }
 
   public static ObjetoControlador getInstancia() {
