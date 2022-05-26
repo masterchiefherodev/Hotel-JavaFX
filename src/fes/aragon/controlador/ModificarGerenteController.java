@@ -92,6 +92,7 @@ public class ModificarGerenteController extends BaseController implements Initia
     } else {
       // Si todos los campos son correctos se actualiza en la base de datos
       try {
+        // Actualizacion en remoto
         cnGerente.modificar(gerenteTmp);
         // Actualiza el objeto local para que se refleje en la interfaz
         ObjetoControlador.getInstancia().getArrayHotel().get(indiceHotel).getGerente()

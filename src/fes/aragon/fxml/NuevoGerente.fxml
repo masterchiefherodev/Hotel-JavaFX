@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controlador.NuevoGerenteController">
    <children>
       <BorderPane layoutY="-5.0" prefHeight="505.0" prefWidth="750.0">
          <top>
@@ -36,7 +36,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtNombre" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -49,7 +49,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtApellidoPaterno" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -62,7 +62,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtApellidoMaterno" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -75,7 +75,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtRFC" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -88,7 +88,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtCorreo" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -101,7 +101,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="300.0" />
+                        <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="300.0" />
                      </children>
                      <padding>
                         <Insets left="30.0" />
@@ -113,7 +113,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #262833;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" stylesheets="@../css/application.css" text="Crear">
+                  <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#crearNuevoGerente" stylesheets="@../css/application.css" text="Crear">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -121,7 +121,7 @@
                         <FontAwesomeIconView glyphName="PLUS_CIRCLE" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" stylesheets="@../css/application.css" text="Descartar">
+                  <Button fx:id="btnDescartar" mnemonicParsing="false" stylesheets="@../css/application.css" text="Descartar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

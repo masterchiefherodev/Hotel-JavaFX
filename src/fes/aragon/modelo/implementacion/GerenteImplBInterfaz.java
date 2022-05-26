@@ -42,7 +42,6 @@ public class GerenteImplBInterfaz<E> implements IBaseDatos<E> {
     solicitud.setInt(7, gerenteTmp.getId());
     solicitud.executeUpdate();
     solicitud.close();
-
   }
 
   @Override

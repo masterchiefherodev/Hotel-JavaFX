@@ -59,4 +59,18 @@ public class VerificadorStrings {
     return true;
   }
 
+  public static boolean verificarCosto(String costoParam) {
+    if (costoParam == null || costoParam.equals(null) || costoParam.isEmpty() || costoParam.isBlank()) {
+      return false;
+    }
+    if (!costoParam.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+      return false;
+    }
+    float costo = Float.parseFloat(costoParam);
+    if (costo <= 0) {
+      return false;
+    }
+    return true;
+  }
+
 }

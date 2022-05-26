@@ -1,11 +1,13 @@
 package fes.aragon.modelo.implementacion;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import fes.aragon.interfaz.IBaseDatos;
 import fes.aragon.modelo.Habitacion;
+import fes.aragon.modelo.Tipo;
 import fes.aragon.mysql.Conexion;
 
 public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
@@ -34,8 +36,16 @@ public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
 
   @Override
   public void modificar(E obj) throws Exception {
-    // TODO Auto-generated method stub
-
+    String query = "UPDATE habitaciones SET numero=?, costo=?, refrigerador=?, id_tps=? " + "where id_hbt=?";
+    Habitacion hbtTmp = (Habitacion) obj;
+    PreparedStatement solicitud = Conexion.getInstancia().getInstancia().getCnn().prepareStatement(query);
+    solicitud.setString(1, hbtTmp.getNumero());
+    solicitud.setFloat(2, hbtTmp.getCosto());
+    solicitud.setBoolean(3, hbtTmp.isRefrigerador());
+    solicitud.setInt(4, hbtTmp.getTipo().getIdTipo());
+    solicitud.setInt(5, hbtTmp.getId());
+    solicitud.executeUpdate();
+    solicitud.close();
   }
 
   @Override
@@ -62,7 +72,7 @@ public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
   }
 
   public ArrayList<E> buscarIdHotel(Integer id) throws Exception {
-    String query = "select a.id_hbt,a.numero,a.costo,a.refrigerador,a.id_htl,b.tipo"
+    String query = "select a.id_hbt,a.numero,a.costo,a.refrigerador,a.id_htl,b.tipo,b.id_tps"
         + " from habitaciones a,tipos b where id_htl=" + id + " and a.id_tps=b.id_tps";
     ArrayList<E> datos = new ArrayList<>();
     Statement solicitud = Conexion.getInstancia().getCnn().createStatement();
@@ -76,7 +86,8 @@ public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
         hb.setNumero(resultado.getString(2));
         hb.setCosto(resultado.getFloat(3));
         hb.setRefrigerador(resultado.getBoolean(4));
-        hb.setTipo(resultado.getString(6));
+        hb.getTipo().setTipo(resultado.getString(6));
+        hb.getTipo().setIdTipo(resultado.getInt(7));
         hb.setIdHotel(id);
         datos.add((E) hb);
       } while (resultado.next());
@@ -86,16 +97,16 @@ public class HabitacionImplBInterfaz<E> implements IBaseDatos<E> {
     return datos;
   }
 
-  public ArrayList<String> buscarTipo() throws Exception {
-    String query = "select tipo from tipos";
-    ArrayList<String> tipos = new ArrayList<>();
+  public ArrayList<Tipo> buscarTipo() throws Exception {
+    String query = "select tipo,id_tps from tipos";
+    ArrayList<Tipo> tipos = new ArrayList<>();
     Statement solicitud = Conexion.getInstancia().getCnn().createStatement();
     ResultSet resultado = solicitud.executeQuery(query);
     if (!resultado.next()) {
       //
     } else {
       do {
-        tipos.add(resultado.getString(1));
+        tipos.add(new Tipo(resultado.getString(1), resultado.getInt(2)));
       } while (resultado.next());
     }
     solicitud.close();

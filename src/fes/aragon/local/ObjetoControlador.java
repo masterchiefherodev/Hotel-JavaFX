@@ -1,13 +1,14 @@
 package fes.aragon.local;
 
 import fes.aragon.modelo.Hotel;
+import fes.aragon.modelo.Tipo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ObjetoControlador {
   private static ObjetoControlador instancia = new ObjetoControlador();
   private ObservableList<Hotel> arrayHotel = FXCollections.observableArrayList();
-  ObservableList<String> tipos = FXCollections.observableArrayList();
+  ObservableList<Tipo> tipos = FXCollections.observableArrayList();
   private int indiceHotel = -1;
   private int indiceHabitacion = -1;
 
@@ -15,11 +16,11 @@ public class ObjetoControlador {
 
   }
 
-  public ObservableList<String> getTipos() {
+  public ObservableList<Tipo> getTipos() {
     return tipos;
   }
 
-  public void setTipos(ObservableList<String> tipos) {
+  public void setTipos(ObservableList<Tipo> tipos) {
     this.tipos = tipos;
   }
 
